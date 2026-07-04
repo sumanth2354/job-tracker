@@ -1,0 +1,15 @@
+{
+  "name": "job-tracker",
+  "version": "1.0.0",
+  "description": "Personal startup career page monitor with Telegram alerts",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "crawl": "node index.js"
+  },
+  "dependencies": {
+    "cheerio": "^1.2.0",
+    "dotenv": "^17.4.2",
+    "playwright": "^1.61.1"
+  }
+}

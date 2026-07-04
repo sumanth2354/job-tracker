@@ -1,0 +1,46 @@
+name: Job Tracker
+
+on:
+  schedule:
+    - cron: '30 0 * * *'   # 6:00 AM IST (UTC+5:30)
+    - cron: '30 6 * * *'   # 12:00 PM IST
+  workflow_dispatch:         # manual trigger from GitHub UI
+
+permissions:
+  contents: write
+
+jobs:
+  crawl:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Install Playwright browser
+        run: npx playwright install chromium --with-deps
+
+      - name: Run crawler
+        env:
+          TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: node index.js
+
+      - name: Save updated hashes
+        run: |
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+          git add data/hashes.json
+          git diff --staged --quiet || git commit -m "chore: update hashes [skip ci]"
+          git push
