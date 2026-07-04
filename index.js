@@ -1,26 +1,66 @@
 import 'dotenv/config'
-import { crawlPage } from './src/crawler.js'
+import { fetchGreenhouseJobs }  from './src/crawlers/greenhouse.js'
+import { crawlPage }            from './src/crawler.js'
+import { loadJobs, saveJobs, detectNewJobs } from './src/jobStore.js'
 import { loadStore, saveStore } from './src/store.js'
-import { sendChangeAlert, sendSummary, sendFirstRun } from './src/notifier.js'
-import { URLS } from './src/urls.js'
+import { sendJobAlert, sendChangeAlert, sendSummary, sendFirstRun } from './src/notifier.js'
+import { isRelevantJob }        from './src/filter.js'
+import { ATS_COMPANIES }        from './src/companies.js'
+import { URLS }                 from './src/urls.js'
 
-const DELAY_MS = 2000 // polite delay between requests
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)) }
 
-function sleep(ms) {
-  return new Promise((r) => setTimeout(r, ms))
+// ─── Greenhouse Companies ─────────────────────────────────────────────────────
+
+async function runGreenhouse() {
+  const ghCompanies = ATS_COMPANIES.filter(c => c.type === 'greenhouse')
+  console.log(`\n🏢 Greenhouse API — ${ghCompanies.length} companies\n`)
+
+  const jobStore = loadJobs()
+  const isFirstRun = Object.keys(jobStore).length === 0
+  let totalNew = 0
+  let errors = 0
+
+  for (const { name, slug } of ghCompanies) {
+    process.stdout.write(`  ${name.padEnd(26)} `)
+
+    try {
+      const jobs = await fetchGreenhouseJobs(slug)
+      const key = `greenhouse:${slug}`
+      const newJobs = detectNewJobs(jobStore, key, jobs)
+      const relevant = newJobs.filter(j => isRelevantJob(j.title))
+
+      if (isFirstRun) {
+        console.log(`✚ ${jobs.length} jobs stored`)
+      } else if (relevant.length > 0) {
+        console.log(`🚨 ${relevant.length} NEW`)
+        totalNew += relevant.length
+        await sendJobAlert(name, relevant, 'greenhouse', slug)
+      } else {
+        console.log(`✓ ${jobs.length} jobs, no change`)
+      }
+    } catch (err) {
+      console.log(`✗ ${err.message.slice(0, 50)}`)
+      errors++
+    }
+
+    await sleep(600)
+  }
+
+  saveJobs(jobStore)
+  return { totalNew, errors, isFirstRun }
 }
 
-async function run() {
-  console.log(`\n🔍 Job Tracker — checking ${URLS.length} career pages\n`)
+// ─── Custom Career Pages ──────────────────────────────────────────────────────
 
+async function runCustom() {
+  console.log(`\n🌐 Custom Pages — ${URLS.length} pages\n`)
   const store = loadStore()
-  const isFirstRun = Object.keys(store).length === 0
-
   let changed = 0
   let errors = 0
 
   for (const { name, url } of URLS) {
-    process.stdout.write(`  ${name.padEnd(28)} `)
+    process.stdout.write(`  ${name.padEnd(26)} `)
 
     try {
       const { hash } = await crawlPage(url)
@@ -38,25 +78,39 @@ async function run() {
         console.log('✓ no change')
       }
     } catch (err) {
-      console.log(`✗ error — ${err.message}`)
+      console.log(`✗ ${err.message.slice(0, 50)}`)
       errors++
     }
 
-    await sleep(DELAY_MS)
+    await sleep(2000)
   }
 
   saveStore(store)
-
-  if (isFirstRun) {
-    await sendFirstRun(URLS.length)
-  } else {
-    await sendSummary(URLS.length, changed, errors)
-  }
-
-  console.log(`\nDone. ${changed} changed, ${errors} errors.\n`)
+  return { changed, errors }
 }
 
-run().catch((err) => {
-  console.error('Fatal:', err)
-  process.exit(1)
-})
+// ─── Main ─────────────────────────────────────────────────────────────────────
+
+async function main() {
+  console.log('━'.repeat(52))
+  console.log('  Job Tracker')
+  console.log('━'.repeat(52))
+
+  const gh     = await runGreenhouse()
+  const custom = await runCustom()
+
+  const totalNew    = gh.totalNew + custom.changed
+  const totalErrors = gh.errors + custom.errors
+
+  if (gh.isFirstRun) {
+    await sendFirstRun(ATS_COMPANIES.length, URLS.length)
+  } else {
+    await sendSummary(ATS_COMPANIES.length, URLS.length, totalNew, totalErrors)
+  }
+
+  console.log('\n' + '━'.repeat(52))
+  console.log(`  Done. ${totalNew} new. ${totalErrors} errors.`)
+  console.log('━'.repeat(52) + '\n')
+}
+
+main().catch(err => { console.error('Fatal:', err); process.exit(1) })

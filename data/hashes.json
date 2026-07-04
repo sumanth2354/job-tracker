@@ -140,9 +140,9 @@
     "lastChanged": null
   },
   "https://atherenergy.com/careers": {
-    "hash": "e3509e73c8495ceeb6f43a7198c9ff13",
+    "hash": "244e2badd017d8a4ea3ebdeb5aceccab",
     "firstSeen": "2026-07-04T11:13:46.967Z",
-    "lastChanged": null
+    "lastChanged": "2026-07-04T12:51:56.505Z"
   },
   "https://www.lenskart.com/careers.html": {
     "hash": "41eab97463a0a1e315b5d78a7d9e12d3",
@@ -155,9 +155,9 @@
     "lastChanged": null
   },
   "https://recko.io/careers/": {
-    "hash": "0bbfbae47537ec6f104d8207579f5496",
+    "hash": "561cd521d0d4ccc1e6b671078d63bb02",
     "firstSeen": "2026-07-04T11:14:16.251Z",
-    "lastChanged": null
+    "lastChanged": "2026-07-04T12:52:39.232Z"
   },
   "https://vercel.com/careers": {
     "hash": "571f2f87b843422a4235be736403946b",
@@ -232,6 +232,96 @@
   "https://jobs.ashbyhq.com/calcom": {
     "hash": "6b84661779af81ddc522a4d53fdfbf50",
     "firstSeen": "2026-07-04T11:15:56.805Z",
+    "lastChanged": null
+  },
+  "https://darwinbox.com/en-in/company/careers": {
+    "hash": "c743f28aa1f34e0afe5a9c996396bd55",
+    "firstSeen": "2026-07-04T12:50:33.326Z",
+    "lastChanged": null
+  },
+  "https://www.dream11.com/about/careers": {
+    "hash": "dbd6d47ca980aee0ee212ee2bbd855ef",
+    "firstSeen": "2026-07-04T12:50:43.195Z",
+    "lastChanged": null
+  },
+  "https://boards.greenhouse.io/physicswallah": {
+    "hash": "b3525f0a5d58c8353ac7c5f36d28c3b0",
+    "firstSeen": "2026-07-04T12:51:50.656Z",
+    "lastChanged": null
+  },
+  "https://www.notion.so/careers": {
+    "hash": "13976be1698068e0f6aa73a0ae23338d",
+    "firstSeen": "2026-07-04T12:52:42.793Z",
+    "lastChanged": null
+  },
+  "https://retool.com/careers": {
+    "hash": "c5d40e5314b0adfa86a330b678d70b80",
+    "firstSeen": "2026-07-04T12:52:45.299Z",
+    "lastChanged": null
+  },
+  "https://linear.app/careers": {
+    "hash": "98ccf101751cdeba965b20cf58d34464",
+    "firstSeen": "2026-07-04T12:52:51.246Z",
+    "lastChanged": null
+  },
+  "https://www.rippling.com/careers": {
+    "hash": "c1a9b09e604d508a0b3aa886a2bc4e1b",
+    "firstSeen": "2026-07-04T12:53:29.505Z",
+    "lastChanged": null
+  },
+  "https://miro.com/careers/": {
+    "hash": "cf6006e02ab87fef96ba8de93829ef18",
+    "firstSeen": "2026-07-04T12:53:33.010Z",
+    "lastChanged": null
+  },
+  "https://ramp.com/careers": {
+    "hash": "d5bc9eb42a3d3d36e3eb6210c5b67726",
+    "firstSeen": "2026-07-04T12:53:37.798Z",
+    "lastChanged": null
+  },
+  "https://mercury.com/about/careers": {
+    "hash": "18575d834d707357c5dc80351e7a9a8d",
+    "firstSeen": "2026-07-04T12:53:48.269Z",
+    "lastChanged": null
+  },
+  "https://www.deel.com/careers": {
+    "hash": "f653196e495542f30482f5bee9b8cbaa",
+    "firstSeen": "2026-07-04T12:53:52.090Z",
+    "lastChanged": null
+  },
+  "https://apply.workable.com/huggingface/": {
+    "hash": "01fad34bcf0da1cf6b34e887ee60cd92",
+    "firstSeen": "2026-07-04T12:54:38.154Z",
+    "lastChanged": null
+  },
+  "https://posthog.com/careers": {
+    "hash": "5cdc6bb91a3d5b9bc73f87ca8bd6700c",
+    "firstSeen": "2026-07-04T12:54:40.789Z",
+    "lastChanged": null
+  },
+  "https://www.raycast.com/careers": {
+    "hash": "73a37bb41774a20cbe1c8042d51ec16c",
+    "firstSeen": "2026-07-04T12:54:43.053Z",
+    "lastChanged": null
+  },
+  "https://plaid.com/careers/": {
+    "hash": "96fafffa9d5da029d7950d658af670c0",
+    "firstSeen": "2026-07-04T12:54:46.864Z",
+    "lastChanged": null
+  },
+  "https://www.canva.com/careers/": {
+    "hash": "c94cd9e62eb62858425a2a7c5a9eeed1",
+    "firstSeen": "2026-07-04T12:54:54.609Z",
+    "lastChanged": null
+  },
+  "https://www.descript.com/careers": {
+    "hash": "8bae9512b17e7ed9f76712cb96f39a48",
+    "firstSeen": "2026-07-04T12:54:57.596Z",
+    "lastChanged": null
+  },
+  "https://coda.io/careers": {
+    "hash": "1a78d035a6ca5d6d2e94ffaa47e4cf26",
+    "firstSeen": "2026-07-04T12:55:00.528Z",
     "lastChanged": null
   }
 }

@@ -1,3 +1,6 @@
+// Custom career pages — monitored by page-hash change detection.
+// Add any URL here and the tracker will alert you when the page content changes.
+
 export const URLS = [
   // ─── The startup you mentioned ───────────────────────────────────────────
   { name: 'Nulyft Tech',        url: 'https://nulyfttech.com/careers' },
@@ -38,26 +41,24 @@ export const URLS = [
   { name: 'Internshala',        url: 'https://internshala.com/about/careers' },
   { name: 'Recko',              url: 'https://recko.io/careers/' },
 
-  // ─── Global startups with India presence / remote ────────────────────────
+  // ─── Global companies with custom career pages ────────────────────────────
+  { name: 'Notion',             url: 'https://www.notion.so/careers' },
+  { name: 'Retool',             url: 'https://retool.com/careers' },
   { name: 'Vercel',             url: 'https://vercel.com/careers' },
+  { name: 'Linear',             url: 'https://linear.app/careers' },
   { name: 'Supabase',           url: 'https://supabase.com/careers' },
-  { name: 'Cloudflare',         url: 'https://www.cloudflare.com/careers/jobs/' },
-
-  // ─── Greenhouse ATS (startup-heavy) ──────────────────────────────────────
-  { name: 'Notion (GH)',        url: 'https://boards.greenhouse.io/notion' },
-  { name: 'Figma (GH)',         url: 'https://boards.greenhouse.io/figma' },
-  { name: 'Airtable (GH)',      url: 'https://boards.greenhouse.io/airtable' },
-  { name: 'Retool (GH)',        url: 'https://boards.greenhouse.io/retool' },
-  { name: 'Segment (GH)',       url: 'https://boards.greenhouse.io/segment' },
-
-  // ─── Lever ATS ───────────────────────────────────────────────────────────
-  { name: 'Webflow (Lever)',    url: 'https://jobs.lever.co/webflow' },
-  { name: 'Loom (Lever)',       url: 'https://jobs.lever.co/loom' },
-  { name: 'Rippling (Lever)',   url: 'https://jobs.lever.co/rippling' },
-  { name: 'Scale AI (Lever)',   url: 'https://jobs.lever.co/scaleai' },
-
-  // ─── Ashby ATS ───────────────────────────────────────────────────────────
-  { name: 'Linear (Ashby)',     url: 'https://jobs.ashbyhq.com/linear' },
-  { name: 'Resend (Ashby)',     url: 'https://jobs.ashbyhq.com/resend' },
-  { name: 'Cal.com (Ashby)',    url: 'https://jobs.ashbyhq.com/calcom' },
+  { name: 'Perplexity',         url: 'https://www.perplexity.ai/careers' },
+  { name: 'Rippling',           url: 'https://www.rippling.com/careers' },
+  { name: 'Miro',               url: 'https://miro.com/careers/' },
+  { name: 'Ramp',               url: 'https://ramp.com/careers' },
+  { name: 'Mercury',            url: 'https://mercury.com/about/careers' },
+  { name: 'Deel',               url: 'https://www.deel.com/careers' },
+  { name: 'Weights & Biases',   url: 'https://wandb.ai/site/company/careers' },
+  { name: 'Hugging Face',       url: 'https://apply.workable.com/huggingface/' },
+  { name: 'PostHog',            url: 'https://posthog.com/careers' },
+  { name: 'Raycast',            url: 'https://www.raycast.com/careers' },
+  { name: 'Plaid',              url: 'https://plaid.com/careers/' },
+  { name: 'Canva',              url: 'https://www.canva.com/careers/' },
+  { name: 'Descript',           url: 'https://www.descript.com/careers' },
+  { name: 'Coda',               url: 'https://coda.io/careers' },
 ]
