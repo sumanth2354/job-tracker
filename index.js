@@ -10,6 +10,24 @@ import { URLS }                 from './src/urls.js'
 
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)) }
 
+async function checkSecrets() {
+  const token  = process.env.TELEGRAM_TOKEN
+  const chatId = process.env.TELEGRAM_CHAT_ID
+  console.log(`\n🔑 TELEGRAM_TOKEN  : ${token  ? '✓ set (' + token.slice(0,6) + '...)' : '✗ MISSING'}`)
+  console.log(`🔑 TELEGRAM_CHAT_ID: ${chatId ? '✓ set (' + chatId + ')' : '✗ MISSING'}\n`)
+  if (!token || !chatId) throw new Error('Telegram secrets not set — check GitHub Secrets')
+
+  // Verify Telegram works before crawling
+  const res = await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ chat_id: chatId, text: '🟢 Job Tracker started — crawling now...', parse_mode: 'HTML' }),
+  })
+  const body = await res.json()
+  if (!res.ok) throw new Error(`Telegram failed: ${JSON.stringify(body)}`)
+  console.log('✓ Telegram working\n')
+}
+
 // ─── Greenhouse Companies ─────────────────────────────────────────────────────
 
 async function runGreenhouse() {
@@ -95,6 +113,8 @@ async function main() {
   console.log('━'.repeat(52))
   console.log('  Job Tracker')
   console.log('━'.repeat(52))
+
+  await checkSecrets()
 
   const gh     = await runGreenhouse()
   const custom = await runCustom()
